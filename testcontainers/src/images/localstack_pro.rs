@@ -19,7 +19,7 @@ impl Default for LocalStackPro {
 
         let mut volumes = HashMap::new();
         volumes.insert("/var/run/docker.sock".to_owned(), "/var/run/docker.sock".to_owned());
-        LocalStack {
+        LocalStackPro {
             env_vars,
             tag: TAG.to_owned(),
             volumes
