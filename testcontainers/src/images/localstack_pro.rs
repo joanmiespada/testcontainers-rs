@@ -3,7 +3,6 @@ use std::collections::HashMap;
 
 const NAME: &str = "localstack/localstack-pro";
 const TAG: &str = "latest";
-const PORT: u16 = 4566;
 
 #[derive(Debug)]
 pub struct LocalStackPro {
@@ -16,6 +15,8 @@ impl Default for LocalStackPro {
     fn default() -> Self {
         let mut env_vars = HashMap::new();
         env_vars.insert("DEBUG".to_owned(), "1".to_owned());
+        env_vars.insert("DOCKER_HOST".to_owned(), "unix:///var/run/docker.sock".to_owned());
+        env_vars.insert("LOCALSTACK_API_KEY".to_owned(), "${LOCALSTACK_API_KEY-}".to_owned());
 
         let mut volumes = HashMap::new();
         volumes.insert("/var/run/docker.sock".to_owned(), "/var/run/docker.sock".to_owned());
@@ -47,7 +48,18 @@ impl Image for LocalStackPro {
     }
 
     fn expose_ports(&self) -> Vec<u16> {
-        vec![PORT]
+        
+        let mut port: Vec<u16> = vec![]; //  [u16;3] = [4566,53,443];
+        port.push(4566);
+        port.push(53);
+        port.push(443);
+        for i in 4510..4560 {
+            port.push(i);
+        }
+
+        //vec![PORT]
+        //PORT.to_vec()
+        port
     }
     fn volumes(&self) -> Box<dyn Iterator<Item = (&String, &String)> + '_> {
         Box::new(self.volumes.iter())
