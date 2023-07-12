@@ -52,4 +52,5 @@ pub mod images;
 pub use images::generic::GenericImage;
 pub use images::localstack::LocalStack;
 pub use images::localstack_pro::LocalStackPro;
+pub use images::localstack_pro::LocalStackProBuilder;
 
