@@ -47,7 +47,7 @@ pub(crate) mod watchdog;
 pub mod clients;
 pub mod core;
 /// All available Docker images.
-mod images;
+pub mod images;
 
 pub use images::generic::GenericImage;
 
