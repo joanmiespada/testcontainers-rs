@@ -5,9 +5,9 @@ edition = "2021"
 publish = false
 
 [dependencies]
-anyhow = "1.0.56"
-axum = { version = "0.5.1", features = [ "http2" ] }
-tokio = { version = "1.17.0", features = [ "full" ] }
+anyhow = "1.0.75"
+axum = { version = "0.5.17", features = [ "http2" ] }
+tokio = { version = "1.32.0", features = [ "full" ] }
 
 [build-dependencies]
-anyhow = "1.0.56"
+anyhow = "1.0.75"
